@@ -1,0 +1,28 @@
+NAME="mdocml"
+VERSION=1.12.1
+RELEASE=1
+CATEGORY="Doc"
+SUMMARY="BSD man page compiler"
+DESCRIPTION="mdocml is a suite of tools compiling mdoc, the roff macro package
+of choice for BSD manual pages, and man, the predominant historical package for
+UNIX manuals. The mission of mdocml is to deprecate groff, the GNU troff
+implementation, for displaying mdoc pages whilst providing token support for
+man pages."
+HOMEPAGE="http://mdocml.bsd.lv/"
+SRC_URI="http://mdocml.bsd.lv/snapshots/${NAME}-${VERSION}.tar.gz"
+PATCH_URI="1.12.1-cygwin.patch"
+
+MAKEOPTS+=" PREFIX=/usr"
+
+src_compile() {
+	lndirs
+	cd ${B}
+	cygmake DBLIB=-ldb
+}
+
+src_install() {
+	cd ${B}
+	cyginstall EXAMPLEDIR=/usr/share/doc/${NAME} MANDIR=/usr/share/man
+	# conflicts with groff
+	rm -f ${D}/usr/bin/preconv.exe ${D}/usr/share/man/*/{preconv,roff}.*
+}

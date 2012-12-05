@@ -1,0 +1,55 @@
+--- origsrc/mdocml-1.12.1/apropos_db.c	2012-03-23 21:19:14.000000000 -0500
++++ src/mdocml-1.12.1/apropos_db.c	2012-12-03 00:12:00.967496200 -0600
+@@ -28,7 +28,7 @@
+ #include <string.h>
+ #include <unistd.h>
+ 
+-#if defined(__linux__)
++#if defined(__linux__) || defined(__CYGWIN__)
+ # include <endian.h>
+ # include <db_185.h>
+ #elif defined(__APPLE__)
+--- origsrc/mdocml-1.12.1/catman.c	2012-03-23 21:19:14.000000000 -0500
++++ src/mdocml-1.12.1/catman.c	2012-12-03 00:25:03.456585900 -0600
+@@ -31,7 +31,7 @@
+ #include <string.h>
+ #include <unistd.h>
+ 
+-#ifdef __linux__
++#if defined(__linux__) || defined(__CYGWIN__)
+ # include <db_185.h>
+ #else
+ # include <db.h>
+--- origsrc/mdocml-1.12.1/cgi.c	2012-03-23 21:19:14.000000000 -0500
++++ src/mdocml-1.12.1/cgi.c	2012-12-03 00:24:40.236553900 -0600
+@@ -43,7 +43,7 @@
+ #include "manpath.h"
+ #include "mandocdb.h"
+ 
+-#ifdef __linux__
++#if defined(__linux__) || defined(__CYGWIN__)
+ # include <db_185.h>
+ #else
+ # include <db.h>
+--- origsrc/mdocml-1.12.1/config.h.post	2012-03-23 21:19:14.000000000 -0500
++++ src/mdocml-1.12.1/config.h.post	2012-12-03 00:26:48.676731100 -0600
+@@ -20,7 +20,7 @@
+ # define betoh32(x) OSSwapBigToHostInt32(x)
+ # define htobe64(x) OSSwapHostToBigInt64(x)
+ # define betoh64(x) OSSwapBigToHostInt64(x)
+-#elif defined(__linux__)
++#elif defined(__linux__) || defined(__CYGWIN__)
+ # define betoh32(x) be32toh(x)
+ # define betoh64(x) be64toh(x)
+ #endif
+--- origsrc/mdocml-1.12.1/mandocdb.c	2012-03-23 21:19:14.000000000 -0500
++++ src/mdocml-1.12.1/mandocdb.c	2012-12-03 00:24:20.486526600 -0600
+@@ -34,7 +34,7 @@
+ #include <string.h>
+ #include <unistd.h>
+ 
+-#if defined(__linux__)
++#if defined(__linux__) || defined(__CYGWIN__)
+ # include <endian.h>
+ # include <db_185.h>
+ #elif defined(__APPLE__)
