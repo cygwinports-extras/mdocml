@@ -31,25 +31,14 @@
  # include <db_185.h>
  #else
  # include <db.h>
---- origsrc/mdocml-1.12.1/config.h.post	2012-03-23 21:19:14.000000000 -0500
-+++ src/mdocml-1.12.1/config.h.post	2012-12-03 00:26:48.676731100 -0600
-@@ -20,7 +20,7 @@
- # define betoh32(x) OSSwapBigToHostInt32(x)
- # define htobe64(x) OSSwapHostToBigInt64(x)
- # define betoh64(x) OSSwapBigToHostInt64(x)
--#elif defined(__linux__)
-+#elif defined(__linux__) || defined(__CYGWIN__)
- # define betoh32(x) be32toh(x)
- # define betoh64(x) be64toh(x)
- #endif
 --- origsrc/mdocml-1.12.1/mandocdb.c	2012-03-23 21:19:14.000000000 -0500
 +++ src/mdocml-1.12.1/mandocdb.c	2012-12-03 00:24:20.486526600 -0600
 @@ -34,7 +34,7 @@
  #include <string.h>
  #include <unistd.h>
  
--#if defined(__linux__)
-+#if defined(__linux__) || defined(__CYGWIN__)
+-#if defined(__linux__) || defined(__sun)
++#if defined(__linux__) || defined(__sun) || defined(__CYGWIN__)
  # include <endian.h>
  # include <db_185.h>
  #elif defined(__APPLE__)

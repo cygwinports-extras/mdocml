@@ -1,5 +1,5 @@
 NAME="mdocml"
-VERSION=1.12.1
+VERSION=1.12.2
 RELEASE=1
 CATEGORY="Doc"
 SUMMARY="BSD man page compiler"
